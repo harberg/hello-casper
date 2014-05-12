@@ -1,3 +1,7 @@
 var $ = require('jquery');
+var Post = require('./post');
 
-$('body).append('<p>Hello world from Browserify and Samwise</p>');
+
+var how_to_use_browserify = new Post("How to use browserify");
+
+$('body').append('<p>' + how_to_use_browserify.title + ' and Samwise</p>');

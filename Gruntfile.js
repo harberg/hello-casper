@@ -72,15 +72,6 @@ module.exports = function(grunt) {
       }
     },
 
-    connect: {
-      options: {
-        port: process.env.PORT || 3000,
-        base: 'dist/',
-      },
-
-      all: {},
-    },
-
     watch: {
       options: {
         livereload: true
@@ -104,9 +95,8 @@ module.exports = function(grunt) {
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  
-  grunt.registerTask('server', ['default', 'connect', 'watch', 'express:dev']);
+  grunt.registerTask('build', ['clean', 'browserify', 'copy']);  
+  grunt.registerTask('server', ['express:dev', 'watch']);
   grunt.registerTask('test',['express:dev','casper']);
-  grunt.registerTask('default', ['jshint', 'clean', 'browserify', 'copy', 'test']);
 
 };
