@@ -1,4 +1,6 @@
 var $ = require('jquery');
+var Bootstrap = require('bootstrap');
+Bootstrap.$ = $;
 var Post = require('./post');
 
 
