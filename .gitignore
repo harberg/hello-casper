@@ -1,3 +1,5 @@
 node_modules/
 .grunt
 test/acceptance/casper-results.xml
+dist
+bower_components

@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -7,7 +8,7 @@ module.exports = function(grunt) {
     copy: {
       all: {
         expand: true,
-        cwd: 'src/',
+        cwd: 'public',
         src: ['*.css', '*.html', '/images/**/*', '!Gruntfile.js'],
         dest: 'dist/',
         flatten: true,
@@ -36,6 +37,39 @@ module.exports = function(grunt) {
           module: true
         }
       },
+    },
+
+    express: {
+      options: {
+        // Override defaults here
+      },
+      dev: {
+        options: {
+          script: 'server.js'
+        }
+      },
+      prod: {
+        options: {
+          script: 'server.js',
+          node_env: 'production'
+        }
+      },
+      test: {
+        options: {
+          script: 'server.js'
+        }
+      }
+    },
+
+    casper: {
+      acceptance : {
+        options : {
+          test : true,
+        },
+        files : {
+          'test/acceptance/casper-results.xml' : ['test/acceptance/*_test.js']
+        }
+      }
     },
 
     connect: {
@@ -70,7 +104,9 @@ module.exports = function(grunt) {
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', ['jshint', 'clean', 'browserify', 'copy']);
-  grunt.registerTask('server', ['default', 'connect', 'watch']);
+  
+  grunt.registerTask('server', ['default', 'connect', 'watch', 'express:dev']);
+  grunt.registerTask('test',['express:dev','casper']);
+  grunt.registerTask('default', ['jshint', 'clean', 'browserify', 'copy', 'test']);
 
 };

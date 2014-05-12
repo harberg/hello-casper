@@ -1,0 +1,21 @@
+{
+  "name": "hello_world_express",
+  "version": "0.0.0",
+  "homepage": "https://github.com/harberg/hello-casper",
+  "authors": [
+    "Nick Harberg <nick@seamonsterstudios.com>"
+  ],
+  "description": "demo of express and browserify",
+  "keywords": [
+    "bowerify",
+    "express"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
