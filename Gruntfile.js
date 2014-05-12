@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         }
       }
     },
-
+    
     casper: {
       acceptance : {
         options : {
