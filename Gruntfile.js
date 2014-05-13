@@ -90,13 +90,24 @@ module.exports = function(grunt) {
         files: ['assets/**/*', '*.css', 'images/**/*', 'img/**/*', '!Gruntfile.js'],
         tasks: ['copy'],
       }
+    },
+
+    simplemocha: {
+      options: {
+        globals: ['should'],
+        timeout: 3000,
+        ignoreLeaks: false,
+        grep: '*-test',
+      },
+      all: { src: ['test/unit/**/*.js'] }
     }
+
   });
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('build', ['clean', 'browserify', 'copy']);  
   grunt.registerTask('server', ['express:dev', 'watch']);
-  grunt.registerTask('test',['express:dev','casper']);
+  grunt.registerTask('test',['express:dev','simplemocha','casper' ]);
 
 };
