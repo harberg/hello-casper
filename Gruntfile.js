@@ -100,7 +100,16 @@ module.exports = function(grunt) {
         grep: '*-test',
       },
       all: { src: ['test/unit/**/*.js'] }
-    }
+    },
+
+    mocha: {
+      test: {
+        src: ['test/browser/**/*.html'],
+        options: {
+          run: true,
+        },
+      },
+    },
 
   });
 
@@ -108,6 +117,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', ['clean', 'browserify', 'copy']);  
   grunt.registerTask('server', ['express:dev', 'watch']);
-  grunt.registerTask('test',['express:dev','simplemocha','casper' ]);
+  grunt.registerTask('test',['express:dev','simplemocha','casper', 'mocha' ]);
 
 };

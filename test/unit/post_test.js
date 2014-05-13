@@ -1,5 +1,5 @@
 var expect = require('chai').expect,
-  Post = require('../lib/post');
+  Post = require('../../lib/post');
 
 describe('Post object tests', function() {
   var post;
